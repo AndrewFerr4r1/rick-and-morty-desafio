@@ -45,6 +45,6 @@ public class Location {
     public String toString() {
         return "Nome: "+name.replace("unknown", "indefinido")+ "\nTipo: "+
                 type.replace("unknown", "indefinido")+"\nDimensão: "+
-                dimension.replace("unknown", "indefinido");
+                dimension.replace("unknown", "indefinido\n");
     }
 }
