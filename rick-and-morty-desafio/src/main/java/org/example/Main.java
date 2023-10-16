@@ -21,15 +21,27 @@ public class Main {
             System.out.println(linha);
             System.out.println("Escolha uma opção");
             System.out.println(linha);
-            System.out.println("1 - Pesquisar Localidade por nome");
+            System.out.println("1 - Gerar txt com todas as localidades");
             System.out.println(linha);
-            System.out.println("2 - Sair");
+            System.out.println("2 - Pesquisar Localidade por nome");
+            System.out.println(linha);
+            System.out.println("3 - Sair");
             System.out.println(linha);
             System.out.println("Digite: ");
             optionUser = scannerInt.nextInt();
 
             switch (optionUser) {
                 case 1:
+                    Utils.generateTxt(config.getAll());
+                    try {
+                        System.out.println("Gerando...");
+                        Thread.sleep(5000);
+                        System.out.println("Saia para ver o txt!");
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case 2:
                     System.out.println("Digite o nome da localidade: ");
                     String name = scanner.nextLine();
                     Location locationName = new Location(config.searchName(name));
@@ -45,13 +57,13 @@ public class Main {
                         }
                     }
                     break;
-                case 2:
+                case 3:
                     System.out.println("Saindo...");
                     break;
                 default:
                     System.out.println("Digite uma opção válida!!");
             }
 
-        }while (optionUser != 2);
+        }while (optionUser != 3);
     }
 }
