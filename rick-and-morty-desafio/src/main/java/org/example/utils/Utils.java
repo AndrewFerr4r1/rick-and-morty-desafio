@@ -1,8 +1,5 @@
 package org.example.utils;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.example.model.Location;
 
 import java.io.FileWriter;
@@ -13,9 +10,27 @@ public class Utils {
 
     public static void generateTxt(Location location) {
         try {
-            FileWriter fileWriter = new FileWriter(location.getName()+".json");
+            FileWriter fileWriter = new FileWriter(location.getName()+".txt");
             fileWriter.write(location.toString());
             fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public static void generateTxt(PilhaObj<Location> pilhaObj) {
+        try {
+            FileWriter fileWriter = new FileWriter("locations.txt");
+
+            List<Location> locationList = pilhaObj.displays();
+
+            for (int i = 0; i < locationList.size(); i++) {
+                fileWriter.write(locationList.get(i).toString()+"\n");
+            }
+
+            fileWriter.close();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
